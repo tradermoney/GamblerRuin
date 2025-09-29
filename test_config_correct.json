@@ -1,0 +1,10 @@
+{
+  "initialCapital": 50,
+  "targetCapital": 100,
+  "betSize": 2,
+  "winProbability": 0.6,
+  "oddRatio": 1.5,
+  "maxRounds": 5000,
+  "bettingStrategy": "martingale",
+  "randomSeed": 42
+}
