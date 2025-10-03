@@ -63,7 +63,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
     setSimulationSpeed(speed);
   };
 
-  const handleConfigChange = (key: keyof SimulationConfig, value: any) => {
+  const handleConfigChange = (key: keyof SimulationConfig, value: string | number | null) => {
     setConfig({ [key]: value });
   };
 

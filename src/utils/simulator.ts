@@ -16,15 +16,19 @@ export class GamblerRuinSimulator {
     const { strategy, betSize, proportion } = config;
     
     switch (strategy) {
-      case 'fixed':
+      case 'fixed': {
         return Math.min(betSize, capital);
-      case 'martingale':
+      }
+      case 'martingale': {
         return Math.min(betSize, capital);
-      case 'proportional':
+      }
+      case 'proportional': {
         const prop = proportion || 0.1;
         return Math.max(1, Math.floor(capital * prop));
-      default:
+      }
+      default: {
         return Math.min(betSize, capital);
+      }
     }
   }
 

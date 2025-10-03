@@ -106,7 +106,7 @@ const SimulationDisplay: React.FC<SimulationDisplayProps> = ({ className = '' })
                 label={{ value: '资金', angle: -90, position: 'insideLeft' }}
               />
               <Tooltip 
-                formatter={(value: any) => [value, '资金']}
+                formatter={(value: number) => [value, '资金']}
                 labelFormatter={(label) => `轮次: ${label}`}
               />
               <Line 

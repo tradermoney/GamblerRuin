@@ -149,7 +149,7 @@ export function usePersistence<T>(
 /**
  * 模拟配置持久化 Hook
  */
-export function useSimulationPersistence(config: any, simulationSpeed: number) {
+export function useSimulationPersistence(config: Record<string, unknown>, simulationSpeed: number) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -225,7 +225,7 @@ export function useSimulationPersistence(config: any, simulationSpeed: number) {
 /**
  * 可视化设置持久化 Hook
  */
-export function useVisualizationPersistence(chartTypes: string[], chartSettings: Record<string, any>) {
+export function useVisualizationPersistence(chartTypes: string[], chartSettings: Record<string, string | number | boolean>) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -301,7 +301,7 @@ export function useVisualizationPersistence(chartTypes: string[], chartSettings:
 /**
  * 导出设置持久化 Hook
  */
-export function useExportPersistence(exportSettings: Record<string, any>) {
+export function useExportPersistence(exportSettings: Record<string, string | number | boolean>) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);

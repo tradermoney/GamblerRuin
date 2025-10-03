@@ -16,7 +16,7 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
   
   // 可视化设置状态
   const [chartTypes, setChartTypes] = useState<string[]>(['pie', 'bar', 'scatter']);
-  const [chartSettings, setChartSettings] = useState<Record<string, any>>({
+  const [chartSettings, setChartSettings] = useState<Record<string, string | number | boolean>>({
     pie: { showLabels: true, outerRadius: 80 },
     bar: { showGrid: true, barColor: '#8884d8' },
     scatter: { showGrid: true, pointColor: '#8884d8' }
@@ -138,7 +138,7 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ name, percent }: any) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }: { name: string; percent: number }) => `${name} ${(percent * 100).toFixed(0)}%`}
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"

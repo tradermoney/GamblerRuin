@@ -13,7 +13,7 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
   const [isExporting, setIsExporting] = useState(false);
   
   // 导出设置状态
-  const [exportSettings, setExportSettings] = useState<Record<string, any>>({
+  const [exportSettings, setExportSettings] = useState<Record<string, string | number | boolean>>({
     csvFormat: 'utf-8',
     includeHeaders: true,
     dateFormat: 'YYYY-MM-DD',
@@ -118,14 +118,14 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
     event.target.value = '';
   };
 
-  const validateConfig = (config: any): boolean => {
+  const validateConfig = (config: Record<string, unknown>): boolean => {
     const requiredFields = [
       'initialCapital', 'targetCapital', 'betSize', 'winProbability', 
       'oddRatio', 'maxRounds', 'bettingStrategy', 'randomSeed'
     ];
     
     return requiredFields.every(field => 
-      config.hasOwnProperty(field) && 
+      Object.prototype.hasOwnProperty.call(config, field) && 
       typeof config[field] === (field === 'bettingStrategy' ? 'string' : 'number')
     );
   };
@@ -139,11 +139,11 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
     setIsExporting(true);
 
     try {
-      const bankruptCount = batchResult.results.filter((r: any) => r.bankrupt).length;
-      const successCount = batchResult.results.filter((r: any) => r.reachedTarget).length;
-      const totalRounds = batchResult.results.reduce((sum: number, r: any) => sum + r.rounds, 0);
+      const bankruptCount = batchResult.results.filter((r: { bankrupt: boolean }) => r.bankrupt).length;
+      const successCount = batchResult.results.filter((r: { reachedTarget: boolean }) => r.reachedTarget).length;
+      const totalRounds = batchResult.results.reduce((sum: number, r: { rounds: number }) => sum + r.rounds, 0);
       const avgRounds = totalRounds / batchResult.results.length;
-      const avgFinalCapital = batchResult.results.reduce((sum: number, r: any) => sum + r.finalCapital, 0) / batchResult.results.length;
+      const avgFinalCapital = batchResult.results.reduce((sum: number, r: { finalCapital: number }) => sum + r.finalCapital, 0) / batchResult.results.length;
 
       const report = {
         timestamp: new Date().toISOString(),
@@ -156,10 +156,10 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
           successRate: (successCount / batchResult.results.length * 100).toFixed(2) + '%',
           averageRounds: avgRounds.toFixed(2),
           averageFinalCapital: avgFinalCapital.toFixed(2),
-          minRounds: Math.min(...batchResult.results.map((r: any) => r.rounds)),
-          maxRounds: Math.max(...batchResult.results.map((r: any) => r.rounds)),
-          minFinalCapital: Math.min(...batchResult.results.map((r: any) => r.finalCapital)),
-          maxFinalCapital: Math.max(...batchResult.results.map((r: any) => r.finalCapital))
+          minRounds: Math.min(...batchResult.results.map((r: { rounds: number }) => r.rounds)),
+          maxRounds: Math.max(...batchResult.results.map((r: { rounds: number }) => r.rounds)),
+          minFinalCapital: Math.min(...batchResult.results.map((r: { finalCapital: number }) => r.finalCapital)),
+          maxFinalCapital: Math.max(...batchResult.results.map((r: { finalCapital: number }) => r.finalCapital))
         }
       };
 
@@ -295,19 +295,19 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
             <div className={styles.previewItem}>
               <span className={styles.previewLabel}>破产率:</span>
               <span className={`${styles.previewValue} ${styles.danger}`}>
-                {((batchResult.results.filter((r: any) => r.bankrupt).length / batchResult.results.length) * 100).toFixed(1)}%
+                {((batchResult.results.filter((r: { bankrupt: boolean }) => r.bankrupt).length / batchResult.results.length) * 100).toFixed(1)}%
               </span>
             </div>
             <div className={styles.previewItem}>
               <span className={styles.previewLabel}>成功率:</span>
               <span className={`${styles.previewValue} ${styles.success}`}>
-                {((batchResult.results.filter((r: any) => r.reachedTarget).length / batchResult.results.length) * 100).toFixed(1)}%
+                {((batchResult.results.filter((r: { reachedTarget: boolean }) => r.reachedTarget).length / batchResult.results.length) * 100).toFixed(1)}%
               </span>
             </div>
             <div className={styles.previewItem}>
               <span className={styles.previewLabel}>平均轮次:</span>
               <span className={styles.previewValue}>
-                {(batchResult.results.reduce((sum: number, r: any) => sum + r.rounds, 0) / batchResult.results.length).toFixed(1)}
+                {(batchResult.results.reduce((sum: number, r: { rounds: number }) => sum + r.rounds, 0) / batchResult.results.length).toFixed(1)}
               </span>
             </div>
           </div>

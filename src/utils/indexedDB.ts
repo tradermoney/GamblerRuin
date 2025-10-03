@@ -5,25 +5,25 @@
 
 export interface StoredData {
   id: string;
-  data: any;
+  data: unknown;
   timestamp: number;
   version: number;
 }
 
 export interface SimulationPersistenceData {
-  config: any;
+  config: Record<string, unknown>;
   simulationSpeed: number;
   lastUsed: number;
 }
 
 export interface VisualizationPersistenceData {
   chartTypes: string[];
-  chartSettings: Record<string, any>;
+  chartSettings: Record<string, string | number | boolean>;
   lastUsed: number;
 }
 
 export interface ExportPersistenceData {
-  exportSettings: Record<string, any>;
+  exportSettings: Record<string, string | number | boolean>;
   lastUsed: number;
 }
 
@@ -95,7 +95,7 @@ class IndexedDBManager {
   /**
    * 保存数据到指定存储
    */
-  async saveData(storeName: string, id: string, data: any): Promise<void> {
+  async saveData(storeName: string, id: string, data: unknown): Promise<void> {
     const db = await this.ensureDB();
     
     return new Promise((resolve, reject) => {
@@ -126,7 +126,7 @@ class IndexedDBManager {
   /**
    * 从指定存储获取数据
    */
-  async getData(storeName: string, id: string): Promise<any> {
+  async getData(storeName: string, id: string): Promise<unknown> {
     const db = await this.ensureDB();
     
     return new Promise((resolve, reject) => {
@@ -226,7 +226,7 @@ class IndexedDBManager {
   /**
    * 保存模拟配置
    */
-  async saveSimulationConfig(config: any, simulationSpeed: number): Promise<void> {
+  async saveSimulationConfig(config: Record<string, unknown>, simulationSpeed: number): Promise<void> {
     const data: SimulationPersistenceData = {
       config,
       simulationSpeed,
@@ -245,7 +245,7 @@ class IndexedDBManager {
   /**
    * 保存可视化设置
    */
-  async saveVisualizationSettings(chartTypes: string[], chartSettings: Record<string, any>): Promise<void> {
+  async saveVisualizationSettings(chartTypes: string[], chartSettings: Record<string, string | number | boolean>): Promise<void> {
     const data: VisualizationPersistenceData = {
       chartTypes,
       chartSettings,
@@ -264,7 +264,7 @@ class IndexedDBManager {
   /**
    * 保存导出设置
    */
-  async saveExportSettings(exportSettings: Record<string, any>): Promise<void> {
+  async saveExportSettings(exportSettings: Record<string, string | number | boolean>): Promise<void> {
     const data: ExportPersistenceData = {
       exportSettings,
       lastUsed: Date.now()
@@ -282,7 +282,7 @@ class IndexedDBManager {
   /**
    * 保存用户偏好设置
    */
-  async saveUserPreferences(preferences: Record<string, any>): Promise<void> {
+  async saveUserPreferences(preferences: Record<string, unknown>): Promise<void> {
     const data = {
       preferences,
       lastUsed: Date.now()
@@ -293,7 +293,7 @@ class IndexedDBManager {
   /**
    * 获取用户偏好设置
    */
-  async getUserPreferences(): Promise<any> {
+  async getUserPreferences(): Promise<unknown> {
     return await this.getData('userPreferences', 'current');
   }
 

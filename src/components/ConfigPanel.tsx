@@ -18,7 +18,7 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ className = '' }) => {
     setValidationErrors(result.errors);
   }, [config]);
 
-  const handleConfigChange = (key: keyof SimulationConfig, value: any) => {
+  const handleConfigChange = (key: keyof SimulationConfig, value: string | number | null) => {
     setConfig({ [key]: value });
   };
 
