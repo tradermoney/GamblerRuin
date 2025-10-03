@@ -44,7 +44,7 @@ body {
 
 /* 焦点样式 */
 *:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #dc2626;
   outline-offset: 2px;
 }
 
@@ -136,7 +136,7 @@ html {
 
 /* 选择文本样式 */
 ::selection {
-  background-color: #3b82f6;
+  background-color: #dc2626;
   color: white;
 }
 
@@ -199,7 +199,7 @@ code {
 
 /* 链接样式 */
 a {
-  color: #3b82f6;
+  color: #dc2626;
   text-decoration: none;
 }
 
@@ -208,7 +208,7 @@ a:hover {
 }
 
 a:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #dc2626;
   outline-offset: 2px;
 }
 

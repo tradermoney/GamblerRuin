@@ -1,29 +1,45 @@
 .dataExportPanel {
-  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  transition: all 0.3s ease;
+}
+
+.dataExportPanel:hover {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
 }
 
 .title {
-  color: #374151;
+  color: #1f2937;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title::before {
+  content: '💾';
   font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .section {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  padding: 20px;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-radius: 16px;
+  padding: 24px;
   margin-bottom: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.section:hover {
+  border-color: #dc2626;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .sectionTitle {
@@ -49,46 +65,63 @@
 }
 
 .exportButton {
-  padding: 12px 20px;
+  padding: 14px 24px;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
   color: white;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.3);
   display: flex;
   align-items: center;
   gap: 8px;
-  min-width: 140px;
+  min-width: 160px;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.exportButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.exportButton:hover::before {
+  left: 100%;
 }
 
 .exportButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
 }
 
 .exportButton:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
 }
 
 .exportButton:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.2);
   background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
 }
 
 .importButton {
   padding: 12px 20px;
-  border: 2px solid #6366f1;
+  border: 2px solid #dc2626;
   border-radius: 8px;
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -101,7 +134,7 @@
 }
 
 .importButton:hover {
-  background: rgba(99, 102, 241, 0.2);
+  background: rgba(220, 38, 38, 0.2);
   transform: translateY(-2px);
 }
 
@@ -115,10 +148,10 @@
 
 .fileInputLabel {
   padding: 12px 20px;
-  border: 2px dashed #6366f1;
+  border: 2px dashed #dc2626;
   border-radius: 8px;
-  background: rgba(99, 102, 241, 0.05);
-  color: #6366f1;
+  background: rgba(220, 38, 38, 0.05);
+  color: #dc2626;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -132,22 +165,81 @@
 }
 
 .fileInputLabel:hover {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: #4f46e5;
+  background: rgba(220, 38, 38, 0.1);
+  border-color: #b91c1c;
+}
+
+.previewSection {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  border: 2px solid #fca5a5;
+}
+
+.previewTitle {
+  color: #991b1b;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.previewItem {
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #fca5a5;
+}
+
+.previewLabel {
+  color: #991b1b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.previewValue {
+  color: #1f2937;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.previewValue.success {
+  color: #dc2626;
+}
+
+.previewValue.danger {
+  color: #dc2626;
 }
 
 .instructions {
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 8px;
-  padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid #fcd34d;
 }
 
 .instructionsTitle {
-  color: #2d3748;
+  color: #92400e;
   font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instructionsTitle::before {
+  content: '💡';
+  font-size: 18px;
 }
 
 .instructionsList {
@@ -157,21 +249,22 @@
 }
 
 .instructionItem {
-  color: #4a5568;
+  color: #78350f;
   font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 8px;
+  line-height: 1.8;
+  margin-bottom: 10px;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
 }
 
 .instructionItem::before {
-  content: "•";
-  color: #10b981;
+  content: "✓";
+  color: #f59e0b;
   font-weight: bold;
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 1.4;
+  flex-shrink: 0;
 }
 
 .statusMessage {
@@ -186,9 +279,9 @@
 }
 
 .statusMessage.success {
-  background: rgba(34, 197, 94, 0.1);
-  color: #059669;
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
 .statusMessage.error {
@@ -198,9 +291,9 @@
 }
 
 .statusMessage.info {
-  background: rgba(59, 130, 246, 0.1);
-  color: #2563eb;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
 .progressBar {
@@ -212,7 +305,7 @@
 }
 
 .progressFill {
-  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
   height: 100%;
   border-radius: 4px;
   transition: width 0.3s ease;

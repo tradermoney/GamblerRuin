@@ -1,5 +1,6 @@
 import React from 'react';
 import useSimulationStore from '../store/simulationStore';
+import { validateSimulationConfig } from '../utils/validation';
 import styles from './ControlPanel.module.css';
 
 interface ControlPanelProps {
@@ -8,6 +9,7 @@ interface ControlPanelProps {
 
 const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
   const { 
+    config,
     isRunning, 
     isPaused, 
     simulationSpeed,
@@ -19,6 +21,9 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
     resetSimulation,
     setSimulationSpeed 
   } = useSimulationStore();
+
+  const validationResult = validateSimulationConfig(config);
+  const canStart = validationResult.isValid;
 
   const handleStart = () => {
     startSingleSimulation();
@@ -59,12 +64,16 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
             <button
               onClick={handleStart}
               className={styles.primaryButton}
+              disabled={!canStart}
+              title={!canStart ? '请先修复配置错误' : ''}
             >
               开始模拟
             </button>
             <button
               onClick={handleBatchStart}
               className={styles.primaryButton}
+              disabled={!canStart}
+              title={!canStart ? '请先修复配置错误' : ''}
             >
               批量模拟
             </button>
