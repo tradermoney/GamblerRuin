@@ -181,8 +181,8 @@
   letter-spacing: 0.025em;
 }
 
-/* 主题切换按钮 */
-.theme-toggle {
+/* GitHub链接 */
+.github-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,32 +194,23 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: #6b7280;
+  text-decoration: none;
 }
 
-.dark .theme-toggle {
+.dark .github-link {
   background-color: #374151;
   color: #9ca3af;
 }
 
-.theme-toggle:hover {
+.github-link:hover {
   background-color: #e5e7eb;
   color: #111827;
   transform: scale(1.05);
 }
 
-.dark .theme-toggle:hover {
+.dark .github-link:hover {
   background-color: #4b5563;
   color: #f9fafb;
-}
-
-.theme-icon {
-  font-size: 16px;
-  line-height: 1;
-  transition: transform 0.2s ease;
-}
-
-.theme-toggle:hover .theme-icon {
-  transform: rotate(15deg);
 }
 
 /* 响应式设计 */
@@ -246,13 +237,14 @@
     display: none;
   }
 
-  .theme-toggle {
+  .github-link {
     width: 28px;
     height: 28px;
   }
 
-  .theme-icon {
-    font-size: 14px;
+  .github-link svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -260,12 +252,11 @@
 @media (prefers-reduced-motion: reduce) {
   .navbar,
   .language-button,
-  .theme-toggle,
-  .theme-icon {
+  .github-link {
     transition: none;
   }
-  
-  .theme-toggle:hover .theme-icon {
+
+  .github-link:hover {
     transform: none;
   }
 }
@@ -275,21 +266,21 @@
   .navbar {
     border-bottom-width: 2px;
   }
-  
+
   .language-button,
-  .theme-toggle {
+  .github-link {
     border: 1px solid currentColor;
   }
 }
 
 /* 焦点样式 */
 .language-button:focus,
-.theme-toggle:focus {
+.github-link:focus {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
 .dark .language-button:focus,
-.dark .theme-toggle:focus {
+.dark .github-link:focus {
   outline-color: #60a5fa;
 }
