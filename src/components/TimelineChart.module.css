@@ -1,0 +1,25 @@
+.chartContainer {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .chartContainer {
+    padding: 8px;
+    margin-top: 12px;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .chartContainer {
+    background: #1e293b;
+    border-color: #475569;
+  }
+}

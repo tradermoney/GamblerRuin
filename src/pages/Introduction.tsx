@@ -1,4 +1,7 @@
 import React from 'react';
+import StateTransitionGraph from '../components/StateTransitionGraph';
+import TimelineChart from '../components/TimelineChart';
+import FormulaExplanation from '../components/FormulaExplanation';
 import './Introduction.css';
 
 const Introduction: React.FC = () => {
@@ -56,6 +59,9 @@ const Introduction: React.FC = () => {
                   <strong>获胜：</strong>当赌徒的资金达到目标金额时，游戏结束
                 </li>
               </ul>
+
+              {/* 状态转移图 */}
+              <StateTransitionGraph />
             </div>
           </section>
 
@@ -69,21 +75,25 @@ const Introduction: React.FC = () => {
                   <div className="question-icon">📊</div>
                   <h3>破产概率</h3>
                   <p>赌徒最终破产的概率是多少？</p>
+                  <TimelineChart type="bankruptcy" />
                 </div>
                 <div className="question-card">
                   <div className="question-icon">🎯</div>
                   <h3>达到目标概率</h3>
                   <p>赌徒达到目标金额的概率是多少？</p>
+                  <TimelineChart type="target" />
                 </div>
                 <div className="question-card">
                   <div className="question-icon">⏱️</div>
                   <h3>游戏时长</h3>
                   <p>平均需要多少次赌局才会结束？</p>
+                  <TimelineChart type="duration" />
                 </div>
                 <div className="question-card">
                   <div className="question-icon">📈</div>
                   <h3>资金变化</h3>
                   <p>资金在游戏过程中如何变化？</p>
+                  <TimelineChart type="capital" />
                 </div>
               </div>
             </div>
@@ -94,30 +104,7 @@ const Introduction: React.FC = () => {
             <h2 className="section-title">数学公式</h2>
             <div className="section-body">
               <p>设赌徒初始资金为 k，目标金额为 N，每次赌局获胜概率为 p，则：</p>
-
-              <div className="formula-box">
-                <h4>破产概率 P(k)</h4>
-                <div className="formula">
-                  <p><strong>当 p = 0.5 时：</strong></p>
-                  <code>P(k) = 1 - k/N</code>
-                </div>
-                <div className="formula">
-                  <p><strong>当 p ≠ 0.5 时：</strong></p>
-                  <code>P(k) = [((1-p)/p)^N - ((1-p)/p)^k] / [((1-p)/p)^N - 1]</code>
-                </div>
-              </div>
-
-              <div className="formula-box">
-                <h4>期望赌局次数 E(k)</h4>
-                <div className="formula">
-                  <p><strong>当 p = 0.5 时：</strong></p>
-                  <code>E(k) = k(N - k)</code>
-                </div>
-                <div className="formula">
-                  <p><strong>当 p ≠ 0.5 时：</strong></p>
-                  <code>E(k) = [k - N × P(k)] / (2p - 1)</code>
-                </div>
-              </div>
+              <FormulaExplanation />
             </div>
           </section>
 
