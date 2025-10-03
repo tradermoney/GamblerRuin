@@ -42,6 +42,24 @@ body {
   white-space: normal;
 }
 
+/* 跳过链接 */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #dc2626;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
 /* 焦点样式 */
 *:focus {
   outline: 2px solid #dc2626;

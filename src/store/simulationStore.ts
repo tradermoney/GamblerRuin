@@ -2,6 +2,7 @@ import { defaultConfig } from '../types/simulation';
 import type { SimulationState, SimulationConfig, BatchResult } from '../types/simulation';
 import { GamblerRuinSimulator } from '../utils/simulator';
 import { create } from 'zustand';
+import { indexedDBManager } from '../utils/indexedDB';
 
 interface SimulationStore extends SimulationState {
   setConfig: (config: Partial<SimulationConfig>) => void;
@@ -12,6 +13,9 @@ interface SimulationStore extends SimulationState {
   stopSimulation: () => void;
   setSimulationSpeed: (speed: number) => void;
   resetSimulation: () => void;
+  saveConfig: () => Promise<void>;
+  restoreConfig: () => Promise<void>;
+  isConfigLoaded: boolean;
 }
 
 const useSimulationStore = create<SimulationStore>((set, get) => ({
@@ -24,11 +28,14 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
   currentRound: 0,
   isPaused: false,
   simulationSpeed: 1,
+  isConfigLoaded: false,
 
   setConfig: (config) => {
     set((state) => ({
       config: { ...state.config, ...config }
     }));
+    // 自动保存配置
+    get().saveConfig();
   },
 
   startSingleSimulation: async () => {
@@ -122,6 +129,8 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
 
   setSimulationSpeed: (speed) => {
     set({ simulationSpeed: speed });
+    // 自动保存速度设置
+    get().saveConfig();
   },
 
   resetSimulation: () => {
@@ -135,6 +144,33 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
       currentRound: 0,
       isPaused: false
     });
+  },
+
+  saveConfig: async () => {
+    try {
+      const { config, simulationSpeed } = get();
+      await indexedDBManager.saveSimulationConfig(config, simulationSpeed);
+      console.log('配置已保存到 IndexedDB');
+    } catch (error) {
+      console.error('保存配置失败:', error);
+    }
+  },
+
+  restoreConfig: async () => {
+    try {
+      const savedData = await indexedDBManager.getSimulationConfig();
+      if (savedData) {
+        set({
+          config: savedData.config,
+          simulationSpeed: savedData.simulationSpeed,
+          isConfigLoaded: true
+        });
+        console.log('配置已从 IndexedDB 恢复');
+      }
+    } catch (error) {
+      console.error('恢复配置失败:', error);
+    }
+    set({ isConfigLoaded: true });
   }
 }));
 

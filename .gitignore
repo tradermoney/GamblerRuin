@@ -101,3 +101,75 @@ Desktop.ini
 # Temporary folders
 .tmp
 .temp
+
+# Vite specific
+.vite
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE and Editor files
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Local development
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tgz
+*.tar.gz
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+logs/
+
+# Runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# GitHub Pages deployment
+# Note: We want to keep .nojekyll and 404.html for GitHub Pages

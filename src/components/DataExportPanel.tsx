@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
 import useSimulationStore from '../store/simulationStore';
+import { useExportPersistence } from '../hooks/usePersistence';
 import styles from './DataExportPanel.module.css';
 
 interface DataExportPanelProps {
@@ -10,6 +11,29 @@ interface DataExportPanelProps {
 const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => {
   const { config, batchResult } = useSimulationStore();
   const [isExporting, setIsExporting] = useState(false);
+  
+  // 导出设置状态
+  const [exportSettings, setExportSettings] = useState<Record<string, any>>({
+    csvFormat: 'utf-8',
+    includeHeaders: true,
+    dateFormat: 'YYYY-MM-DD',
+    decimalPlaces: 2,
+    autoSave: false
+  });
+
+  // 持久化设置
+  const { restoreSettings } = useExportPersistence(exportSettings);
+
+  // 恢复设置
+  useEffect(() => {
+    const loadSettings = async () => {
+      const savedSettings = await restoreSettings();
+      if (savedSettings) {
+        setExportSettings(savedSettings.exportSettings);
+      }
+    };
+    loadSettings();
+  }, [restoreSettings]);
 
   const exportToCSV = () => {
     if (!batchResult || !batchResult.results || batchResult.results.length === 0) {
@@ -20,23 +44,34 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
     setIsExporting(true);
 
     try {
+      // 根据设置格式化数据
+      const formatNumber = (num: number) => {
+        return num.toFixed(exportSettings.decimalPlaces);
+      };
+
       // CSV 头部
-      const headers = ['运行编号', '最终资金', '总轮次', '是否破产', '是否达标', '最大资金', '最小资金'];
+      const headers = exportSettings.includeHeaders 
+        ? ['运行编号', '最终资金', '总轮次', '是否破产', '是否达标', '最大资金', '最小资金']
+        : [];
+      
       const csvContent = [
-        headers.join(','),
+        ...(exportSettings.includeHeaders ? [headers.join(',')] : []),
         ...batchResult.results.map((result, index) => [
           index + 1,
-          result.finalCapital,
+          formatNumber(result.finalCapital),
           result.rounds,
           result.bankrupt ? '是' : '否',
           result.reachedTarget ? '是' : '否',
-          result.trace ? Math.max(...result.trace) : 0,
-          result.trace ? Math.min(...result.trace) : 0
+          result.trace ? formatNumber(Math.max(...result.trace)) : '0',
+          result.trace ? formatNumber(Math.min(...result.trace)) : '0'
         ].join(','))
       ].join('\n');
 
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      saveAs(blob, `gambler_ruin_results_${new Date().toISOString().slice(0, 10)}.csv`);
+      const charset = exportSettings.csvFormat === 'utf-8' ? 'utf-8' : 'gbk';
+      const blob = new Blob([csvContent], { type: `text/csv;charset=${charset};` });
+      
+      const dateStr = new Date().toISOString().slice(0, 10);
+      saveAs(blob, `gambler_ruin_results_${dateStr}.csv`);
     } catch (error) {
       console.error('导出CSV失败:', error);
       alert('导出失败，请重试');
@@ -162,6 +197,64 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
           >
             {isExporting ? '导出中...' : '导出完整报告'}
           </button>
+        </div>
+      </div>
+
+      {/* 导出设置 */}
+      <div className={styles.section}>
+        <h3 className={styles.sectionTitle}>导出设置</h3>
+        <div className={styles.settingsGrid}>
+          <div className={styles.settingItem}>
+            <label className={styles.settingLabel}>
+              <input
+                type="checkbox"
+                checked={exportSettings.includeHeaders}
+                onChange={(e) => setExportSettings(prev => ({
+                  ...prev,
+                  includeHeaders: e.target.checked
+                }))}
+                className={styles.settingCheckbox}
+              />
+              包含表头
+            </label>
+          </div>
+          
+          <div className={styles.settingItem}>
+            <label className={styles.settingLabel}>
+              小数位数:
+              <select
+                value={exportSettings.decimalPlaces}
+                onChange={(e) => setExportSettings(prev => ({
+                  ...prev,
+                  decimalPlaces: parseInt(e.target.value)
+                }))}
+                className={styles.settingSelect}
+              >
+                <option value={0}>0</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+              </select>
+            </label>
+          </div>
+          
+          <div className={styles.settingItem}>
+            <label className={styles.settingLabel}>
+              编码格式:
+              <select
+                value={exportSettings.csvFormat}
+                onChange={(e) => setExportSettings(prev => ({
+                  ...prev,
+                  csvFormat: e.target.value
+                }))}
+                className={styles.settingSelect}
+              >
+                <option value="utf-8">UTF-8</option>
+                <option value="gbk">GBK</option>
+              </select>
+            </label>
+          </div>
         </div>
       </div>
 

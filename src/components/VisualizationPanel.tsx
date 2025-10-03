@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, ScatterChart, Scatter } from 'recharts';
 import useSimulationStore from '../store/simulationStore';
 import type { SingleRunResult } from '../types/simulation';
+import { useVisualizationPersistence } from '../hooks/usePersistence';
 import styles from './VisualizationPanel.module.css';
 
 interface VisualizationPanelProps {
@@ -12,6 +13,29 @@ interface VisualizationPanelProps {
 
 const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' }) => {
   const { batchResult } = useSimulationStore();
+  
+  // 可视化设置状态
+  const [chartTypes, setChartTypes] = useState<string[]>(['pie', 'bar', 'scatter']);
+  const [chartSettings, setChartSettings] = useState<Record<string, any>>({
+    pie: { showLabels: true, outerRadius: 80 },
+    bar: { showGrid: true, barColor: '#8884d8' },
+    scatter: { showGrid: true, pointColor: '#8884d8' }
+  });
+
+  // 持久化设置
+  const { restoreSettings } = useVisualizationPersistence(chartTypes, chartSettings);
+
+  // 恢复设置
+  useEffect(() => {
+    const loadSettings = async () => {
+      const savedSettings = await restoreSettings();
+      if (savedSettings) {
+        setChartTypes(savedSettings.chartTypes);
+        setChartSettings(savedSettings.chartSettings);
+      }
+    };
+    loadSettings();
+  }, [restoreSettings]);
 
   const getOutcomeData = () => {
     if (!batchResult || !batchResult.results || batchResult.results.length === 0) return [];

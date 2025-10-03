@@ -1,12 +1,12 @@
 .simulationDisplay {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(229, 231, 235, 0.8);
   transition: all 0.3s ease;
-  min-height: 400px;
+  min-height: 300px;
 }
 
 .simulationDisplay:hover {
@@ -18,16 +18,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .title {
   color: #1f2937;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .title::before {
@@ -74,15 +74,15 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
-  margin-bottom: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .statCard {
   background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 12px;
   text-align: center;
   border: 2px solid #e5e7eb;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -96,16 +96,16 @@
 
 .statLabel {
   color: #6b7280;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .statValue {
   color: #1f2937;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 800;
   background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
   -webkit-background-clip: text;
@@ -115,19 +115,19 @@
 
 .chartContainer {
   background: white;
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 24px;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 2px solid #e5e7eb;
-  height: 350px;
+  height: 250px;
 }
 
 .chartTitle {
   color: #374151;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   text-align: center;
 }
 
@@ -156,20 +156,20 @@
 
 .resultSection {
   background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border-radius: 16px;
-  padding: 24px;
-  margin-top: 24px;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
   border: 2px solid #bbf7d0;
 }
 
 .resultTitle {
   color: #065f46;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .resultTitle::before {
@@ -179,17 +179,17 @@
 
 .resultGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
 }
 
 .resultItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 8px 10px;
   background: white;
-  border-radius: 10px;
+  border-radius: 6px;
   border: 1px solid #d1fae5;
 }
 
@@ -218,16 +218,16 @@
 }
 
 .progressSection {
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .progressHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #6b7280;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -249,16 +249,16 @@
 
 .runInfo {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 16px;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .runInfoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
 }
 
 .runInfoItem {
