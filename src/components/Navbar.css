@@ -3,17 +3,17 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(220, 38, 38, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  box-shadow: 0 1px 3px 0 rgba(185, 28, 28, 0.3);
-  border-bottom: 1px solid rgba(185, 28, 28, 0.5);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(229, 231, 235, 1);
   transition: all 0.3s ease;
 }
 
 .dark .navbar {
-  background-color: rgba(153, 27, 27, 0.9);
-  border-bottom-color: rgba(127, 29, 29, 0.5);
-  box-shadow: 0 1px 3px 0 rgba(127, 29, 29, 0.3);
+  background-color: rgba(31, 41, 55, 0.95);
+  border-bottom-color: rgba(55, 65, 81, 1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 .navbar-container {
@@ -40,7 +40,7 @@
 .navbar-logo {
   width: 20px;
   height: 20px;
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -56,15 +56,13 @@
 .navbar-title {
   font-size: 14px;
   font-weight: 600;
-  color: #ffffff;
+  color: #1f2937;
   line-height: 1;
   margin: 0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .dark .navbar-title {
-  color: #fef2f2;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  color: #f9fafb;
 }
 
 /* 导航菜单 */
@@ -81,35 +79,35 @@
   border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  color: #6b7280;
   text-decoration: none;
   transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .menu-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background-color: #f3f4f6;
+  color: #111827;
 }
 
 .menu-item.active {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #dc2626;
+  background-color: #3b82f6;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .dark .menu-item {
-  color: rgba(254, 242, 242, 0.8);
+  color: #9ca3af;
 }
 
 .dark .menu-item:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #fef2f2;
+  background-color: #374151;
+  color: #f9fafb;
 }
 
 .dark .menu-item.active {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #991b1b;
+  background-color: #3b82f6;
+  color: #ffffff;
 }
 
 /* 控制区域 */
@@ -122,15 +120,14 @@
 /* 语言切换器 */
 .language-switcher {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #f3f4f6;
   border-radius: 6px;
   padding: 2px;
   gap: 2px;
-  backdrop-filter: blur(4px);
 }
 
 .dark .language-switcher {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #374151;
 }
 
 .language-button {
@@ -145,32 +142,32 @@
   transition: all 0.2s ease;
   font-size: 12px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  color: #6b7280;
 }
 
 .language-button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  background-color: #e5e7eb;
+  color: #111827;
 }
 
 .dark .language-button {
-  color: rgba(254, 242, 242, 0.8);
+  color: #9ca3af;
 }
 
 .dark .language-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fef2f2;
+  background-color: #4b5563;
+  color: #f9fafb;
 }
 
 .language-button.active {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #dc2626;
+  background-color: #ffffff;
+  color: #3b82f6;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
 .dark .language-button.active {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #991b1b;
+  background-color: #1f2937;
+  color: #3b82f6;
 }
 
 .language-flag {
@@ -192,28 +189,27 @@
   width: 32px;
   height: 32px;
   border: none;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #f3f4f6;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(4px);
+  color: #6b7280;
 }
 
 .dark .theme-toggle {
-  background-color: rgba(0, 0, 0, 0.3);
-  color: rgba(254, 242, 242, 0.8);
+  background-color: #374151;
+  color: #9ca3af;
 }
 
 .theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  background-color: #e5e7eb;
+  color: #111827;
   transform: scale(1.05);
 }
 
 .dark .theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fef2f2;
+  background-color: #4b5563;
+  color: #f9fafb;
 }
 
 .theme-icon {
@@ -289,11 +285,11 @@
 /* 焦点样式 */
 .language-button:focus,
 .theme-toggle:focus {
-  outline: 2px solid #fbbf24;
+  outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
 .dark .language-button:focus,
 .dark .theme-toggle:focus {
-  outline-color: #f59e0b;
+  outline-color: #60a5fa;
 }

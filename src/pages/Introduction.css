@@ -1,6 +1,6 @@
 .introduction-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #f9fafb;
   padding: 2rem 1rem;
 }
 
@@ -9,14 +9,15 @@
   margin: 0 auto;
   background: white;
   border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 /* 头部 */
 .introduction-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  color: #111827;
   padding: 4rem 2rem;
   text-align: center;
 }
@@ -25,14 +26,14 @@
   font-size: 3rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #111827;
 }
 
 .introduction-subtitle {
   font-size: 1.5rem;
   font-weight: 300;
   margin: 0;
-  opacity: 0.95;
+  color: #6b7280;
 }
 
 /* 内容区域 */
@@ -51,10 +52,10 @@
 .section-title {
   font-size: 2rem;
   font-weight: 600;
-  color: #2d3748;
+  color: #111827;
   margin: 0 0 1.5rem 0;
   padding-bottom: 0.75rem;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #3b82f6;
 }
 
 .section-body {
@@ -81,13 +82,13 @@
 .definition-list li {
   padding: 1rem 1.5rem;
   margin-bottom: 0.75rem;
-  background: #f7fafc;
-  border-left: 4px solid #667eea;
+  background: #f9fafb;
+  border-left: 4px solid #3b82f6;
   border-radius: 4px;
 }
 
 .definition-list li strong {
-  color: #667eea;
+  color: #3b82f6;
   font-weight: 600;
 }
 
@@ -100,16 +101,18 @@
 }
 
 .question-card {
-  background: #f7fafc;
+  background: #f9fafb;
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
+  border: 1px solid #e5e7eb;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .question-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
 }
 
 .question-icon {
@@ -120,7 +123,7 @@
 .question-card h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2d3748;
+  color: #111827;
   margin: 0 0 0.75rem 0;
 }
 
@@ -133,17 +136,17 @@
 
 /* 公式框 */
 .formula-box {
-  background: #f7fafc;
+  background: #f9fafb;
   padding: 1.5rem;
   border-radius: 8px;
   margin: 1.5rem 0;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e5e7eb;
 }
 
 .formula-box h4 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #667eea;
+  color: #3b82f6;
   margin: 0 0 1rem 0;
 }
 
@@ -156,7 +159,7 @@
 
 .formula p {
   font-weight: 600;
-  color: #2d3748;
+  color: #111827;
   margin: 0 0 0.5rem 0;
 }
 
@@ -164,8 +167,8 @@
   display: block;
   font-family: 'Courier New', monospace;
   font-size: 1rem;
-  color: #667eea;
-  background: #edf2f7;
+  color: #3b82f6;
+  background: #f3f4f6;
   padding: 0.75rem;
   border-radius: 4px;
   overflow-x: auto;
@@ -181,8 +184,9 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
-  background: #f7fafc;
+  background: #f9fafb;
   border-radius: 12px;
+  border: 1px solid #e5e7eb;
 }
 
 .insight-item:last-child {
@@ -193,7 +197,7 @@
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #3b82f6;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -206,7 +210,7 @@
 .insight-content h4 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2d3748;
+  color: #111827;
   margin: 0 0 0.5rem 0;
 }
 
@@ -223,7 +227,7 @@
 }
 
 .cta-box {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #3b82f6;
   color: white;
   padding: 3rem;
   border-radius: 12px;
@@ -234,19 +238,20 @@
   font-size: 2rem;
   font-weight: 600;
   margin: 0 0 1rem 0;
+  color: white;
 }
 
 .cta-box p {
   font-size: 1.125rem;
   margin: 0 0 2rem 0;
-  opacity: 0.95;
   line-height: 1.7;
+  color: white;
 }
 
 .cta-button {
   display: inline-block;
   background: white;
-  color: #667eea;
+  color: #3b82f6;
   padding: 1rem 2.5rem;
   border-radius: 8px;
   font-size: 1.125rem;
@@ -257,7 +262,7 @@
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* 响应式设计 */
