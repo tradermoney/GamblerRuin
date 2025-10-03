@@ -187,3 +187,14 @@ docs/.vitepress/cache/
 config.local.js
 config.local.ts
 .envrc
+
+# Test configuration files that might contain local settings
+test_config.json
+test_config_correct.json
+
+# Shell scripts that might contain local settings
+start.sh
+
+# Markdown documentation files (project-specific)
+DEPLOYMENT_CHECKLIST.md
+LAYOUT_OPTIMIZATION.md
