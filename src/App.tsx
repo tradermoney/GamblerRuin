@@ -39,13 +39,13 @@ function App() {
       {/* 头部导航 */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm dark:bg-gray-800/80 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-lg">🎲</span>
+          <div className="flex justify-between items-center py-1">
+            <div className="flex items-center space-x-2">
+              <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center shadow-lg">
+                <span className="text-sm">🎲</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
+                <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                   {t('simulation.title')}
                 </h1>
                 <p className="text-xs text-gray-600 dark:text-gray-400">
@@ -54,16 +54,16 @@ function App() {
               </div>
             </div>
             
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
               {/* 语言切换 */}
-              <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1 shadow-inner">
+              <div className="flex bg-gray-100 dark:bg-gray-700 rounded-md p-0.5 shadow-inner">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
-                    className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${
+                    className={`px-2 py-1 rounded-sm text-xs font-medium transition-all duration-200 ${
                       currentLanguage === lang.code
-                        ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-md scale-105'
+                        ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm scale-105'
                         : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:scale-105'
                     }`}
                     title={lang.name}
@@ -77,11 +77,11 @@ function App() {
               {/* 主题切换 */}
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="p-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 hover:scale-110 shadow-sm"
+                className="p-1.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 hover:scale-110 shadow-sm"
                 title={isDarkMode ? '切换到浅色模式' : '切换到深色模式'}
                 aria-label={isDarkMode ? '切换到浅色模式' : '切换到深色模式'}
               >
-                {isDarkMode ? '☀️' : '🌙'}
+                <span className="text-sm">{isDarkMode ? '☀️' : '🌙'}</span>
               </button>
             </div>
           </div>
