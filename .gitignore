@@ -1,22 +1,13 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
 # Dependencies
-node_modules
+node_modules/
 .pnp
 .pnp.js
 
 # Build outputs
-dist
-dist-ssr
-build
-out
+dist/
+dist-ssr/
+build/
+out/
 *.local
 
 # Environment variables
@@ -25,97 +16,56 @@ out
 .env.development.local
 .env.test.local
 .env.production.local
+.env.test
 
 # Cache directories
-.cache
-.parcel-cache
-.next
-.nuxt
-.vuepress/dist
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist/
+.vite/
 
 # Coverage directory used by tools like istanbul
-coverage
+coverage/
 *.lcov
-
-# nyc test coverage
-.nyc_output
+.nyc_output/
 
 # Temporary folders
-tmp
-temp
+tmp/
+temp/
+.tmp/
+.temp/
 
 # Runtime data
-pids
+pids/
 *.pid
 *.seed
 *.pid.lock
 
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 *~
-
-# OS generated files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# TypeScript
-*.tsbuildinfo
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variables file
-.env.test
-
-# Storybook build outputs
-.out
-.storybook-out
-
-# Temporary folders
-.tmp
-.temp
-
-# Vite specific
-.vite
-
-# TypeScript
-*.tsbuildinfo
-
-# IDE and Editor files
-.vscode/settings.json
-.vscode/launch.json
-.vscode/tasks.json
 *.swp
 *.swo
 
-# OS specific
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -123,31 +73,13 @@ Desktop.ini
 .Trashes
 ehthumbs.db
 Thumbs.db
+Desktop.ini
 
-# Local development
-.env.local
-.env.*.local
-
-# Build artifacts
-*.tgz
-*.tar.gz
-
-# Test coverage
-coverage/
-.nyc_output/
-
-# Logs
-*.log
-logs/
-
-# Runtime
-pids
-*.pid
-*.seed
-*.pid.lock
+# TypeScript
+*.tsbuildinfo
 
 # Optional npm cache directory
-.npm
+.npm/
 
 # Optional eslint cache
 .eslintcache
@@ -163,13 +95,22 @@ pids
 
 # Output of 'npm pack'
 *.tgz
+*.tar.gz
 
 # Yarn Integrity file
 .yarn-integrity
 
 # Storybook build outputs
-.out
-.storybook-out
+.out/
+.storybook-out/
+
+# Playwright test results
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Local development
+.env.*.local
 
 # GitHub Pages deployment
 # Note: We want to keep .nojekyll and 404.html for GitHub Pages

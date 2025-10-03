@@ -82,3 +82,4 @@ npm run preview:github
 - 在仓库 Settings → Secrets and variables → Actions 中添加
 - 在 `.github/workflows/deploy.yml` 中使用 `${{ secrets.VARIABLE_NAME }}`
 
+
