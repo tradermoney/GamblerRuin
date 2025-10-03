@@ -36,7 +36,7 @@ const PersistenceTest: React.FC = () => {
       
       // 测试读取数据
       const retrievedData = await indexedDBManager.getData('userPreferences', 'test');
-      if (retrievedData && retrievedData.testValue === 'Hello IndexedDB') {
+      if (retrievedData && (retrievedData as { testValue: string }).testValue === 'Hello IndexedDB') {
         addTestResult('✅ 数据读取成功');
       } else {
         addTestResult('❌ 数据读取失败');
@@ -67,7 +67,7 @@ const PersistenceTest: React.FC = () => {
       addTestResult('✅ 配置保存成功');
       
       // 修改配置
-      const originalConfig = { ...config };
+      const originalConfig = { ...config } as typeof config;
       useSimulationStore.setState({
         config: {
           ...config,

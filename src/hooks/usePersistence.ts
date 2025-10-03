@@ -78,7 +78,7 @@ export function usePersistence<T>(
       const savedData = await indexedDBManager.getData(storeType, key);
       if (savedData) {
         console.log(`数据已恢复: ${key}`);
-        return savedData;
+        return savedData as T;
       }
       return null;
     } catch (err) {
@@ -225,7 +225,7 @@ export function useSimulationPersistence(config: Record<string, unknown>, simula
 /**
  * 可视化设置持久化 Hook
  */
-export function useVisualizationPersistence(chartTypes: string[], chartSettings: Record<string, string | number | boolean>) {
+export function useVisualizationPersistence(chartTypes: string[], chartSettings: Record<string, unknown>) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -240,7 +240,7 @@ export function useVisualizationPersistence(chartTypes: string[], chartSettings:
     setError(null);
 
     try {
-      await indexedDBManager.saveVisualizationSettings(chartTypes, chartSettings);
+      await indexedDBManager.saveVisualizationSettings(chartTypes, chartSettings as Record<string, string | number | boolean>);
       console.log('可视化设置已保存');
       return true;
     } catch (err) {

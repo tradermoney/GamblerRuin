@@ -149,7 +149,7 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
   saveConfig: async () => {
     try {
       const { config, simulationSpeed } = get();
-      await indexedDBManager.saveSimulationConfig(config, simulationSpeed);
+      await indexedDBManager.saveSimulationConfig(config as unknown as Record<string, unknown>, simulationSpeed);
       console.log('配置已保存到 IndexedDB');
     } catch (error) {
       console.error('保存配置失败:', error);
@@ -161,7 +161,7 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
       const savedData = await indexedDBManager.getSimulationConfig();
       if (savedData) {
         set({
-          config: savedData.config,
+          config: savedData.config as unknown as SimulationConfig,
           simulationSpeed: savedData.simulationSpeed,
           isConfigLoaded: true
         });

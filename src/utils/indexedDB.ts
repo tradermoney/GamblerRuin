@@ -239,7 +239,8 @@ class IndexedDBManager {
    * 获取模拟配置
    */
   async getSimulationConfig(): Promise<SimulationPersistenceData | null> {
-    return await this.getData('simulationConfig', 'current');
+    const data = await this.getData('simulationConfig', 'current');
+    return data as SimulationPersistenceData | null;
   }
 
   /**
@@ -258,7 +259,8 @@ class IndexedDBManager {
    * 获取可视化设置
    */
   async getVisualizationSettings(): Promise<VisualizationPersistenceData | null> {
-    return await this.getData('visualizationSettings', 'current');
+    const data = await this.getData('visualizationSettings', 'current');
+    return data as VisualizationPersistenceData | null;
   }
 
   /**
@@ -276,7 +278,8 @@ class IndexedDBManager {
    * 获取导出设置
    */
   async getExportSettings(): Promise<ExportPersistenceData | null> {
-    return await this.getData('exportSettings', 'current');
+    const data = await this.getData('exportSettings', 'current');
+    return data as ExportPersistenceData | null;
   }
 
   /**

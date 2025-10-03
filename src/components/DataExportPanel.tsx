@@ -13,7 +13,13 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
   const [isExporting, setIsExporting] = useState(false);
   
   // 导出设置状态
-  const [exportSettings, setExportSettings] = useState<Record<string, string | number | boolean>>({
+  const [exportSettings, setExportSettings] = useState<{
+    csvFormat: string;
+    includeHeaders: boolean;
+    dateFormat: string;
+    decimalPlaces: number;
+    autoSave: boolean;
+  }>({
     csvFormat: 'utf-8',
     includeHeaders: true,
     dateFormat: 'YYYY-MM-DD',
@@ -29,7 +35,7 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
     const loadSettings = async () => {
       const savedSettings = await restoreSettings();
       if (savedSettings) {
-        setExportSettings(savedSettings.exportSettings);
+        setExportSettings(savedSettings.exportSettings as typeof exportSettings);
       }
     };
     loadSettings();
@@ -50,7 +56,7 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
       };
 
       // CSV 头部
-      const headers = exportSettings.includeHeaders 
+      const headers = exportSettings.includeHeaders
         ? ['运行编号', '最终资金', '总轮次', '是否破产', '是否达标', '最大资金', '最小资金']
         : [];
       
@@ -223,7 +229,7 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
             <label className={styles.settingLabel}>
               小数位数:
               <select
-                value={exportSettings.decimalPlaces}
+                value={typeof exportSettings.decimalPlaces === 'number' ? exportSettings.decimalPlaces : 2}
                 onChange={(e) => setExportSettings(prev => ({
                   ...prev,
                   decimalPlaces: parseInt(e.target.value)

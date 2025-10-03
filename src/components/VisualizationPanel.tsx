@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, ScatterChart, Scatter } from 'recharts';
+import type { PieLabelRenderProps } from 'recharts';
 import useSimulationStore from '../store/simulationStore';
 import type { SingleRunResult } from '../types/simulation';
 import { useVisualizationPersistence } from '../hooks/usePersistence';
@@ -16,7 +17,7 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
   
   // 可视化设置状态
   const [chartTypes, setChartTypes] = useState<string[]>(['pie', 'bar', 'scatter']);
-  const [chartSettings, setChartSettings] = useState<Record<string, string | number | boolean>>({
+  const [chartSettings, setChartSettings] = useState({
     pie: { showLabels: true, outerRadius: 80 },
     bar: { showGrid: true, barColor: '#8884d8' },
     scatter: { showGrid: true, pointColor: '#8884d8' }
@@ -31,7 +32,7 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
       const savedSettings = await restoreSettings();
       if (savedSettings) {
         setChartTypes(savedSettings.chartTypes);
-        setChartSettings(savedSettings.chartSettings);
+        setChartSettings(savedSettings.chartSettings as unknown as typeof chartSettings);
       }
     };
     loadSettings();
@@ -138,7 +139,10 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ name, percent }: { name: string; percent: number }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={(props: PieLabelRenderProps) => {
+                  const { name, percent } = props as unknown as { name: string; percent: number };
+                  return `${name} ${(percent * 100).toFixed(0)}%`;
+                }}
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
