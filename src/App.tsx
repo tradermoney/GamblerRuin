@@ -39,20 +39,15 @@ function App() {
       {/* 头部导航 */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm dark:bg-gray-900/90 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-[1920px] mx-auto px-3">
-          <div className="flex items-center justify-between h-10">
+          <div className="flex items-center justify-between" style={{ height: '40px' }}>
             {/* 左侧：Logo和标题 */}
             <div className="flex items-center space-x-2">
               <div className="w-5 h-5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center">
                 <span className="text-xs">🎲</span>
               </div>
-              <div>
-                <h1 className="text-sm font-semibold text-gray-900 dark:text-white leading-none">
-                  {t('simulation.title')}
-                </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400 leading-none">
-                  {t('simulation.description')}
-                </p>
-              </div>
+              <h1 className="text-sm font-semibold text-gray-900 dark:text-white leading-none">
+                {t('simulation.title')}
+              </h1>
             </div>
             
             {/* 右侧：控制按钮 */}
