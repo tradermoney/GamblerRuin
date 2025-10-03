@@ -39,13 +39,13 @@ function App() {
       {/* 头部导航 */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm dark:bg-gray-800/80 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-2xl">🎲</span>
+          <div className="flex justify-between items-center py-2">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-lg">🎲</span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
+                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
                   {t('simulation.title')}
                 </h1>
                 <p className="text-xs text-gray-600 dark:text-gray-400">
@@ -54,7 +54,7 @@ function App() {
               </div>
             </div>
             
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
               {/* 语言切换 */}
               <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1 shadow-inner">
                 {languages.map((lang) => (
