@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 interface NavbarProps {
@@ -18,6 +19,8 @@ const Navbar: React.FC<NavbarProps> = ({
   isDarkMode,
   onThemeToggle,
 }) => {
+  const location = useLocation();
+
   return (
     <header className="navbar">
       <div className="navbar-container">
@@ -31,7 +34,23 @@ const Navbar: React.FC<NavbarProps> = ({
               {title}
             </h1>
           </div>
-          
+
+          {/* 中间：导航菜单 */}
+          <nav className="navbar-menu">
+            <Link
+              to="/"
+              className={`menu-item ${location.pathname === '/' ? 'active' : ''}`}
+            >
+              📚 赌徒破产问题介绍
+            </Link>
+            <Link
+              to="/simulator"
+              className={`menu-item ${location.pathname === '/simulator' ? 'active' : ''}`}
+            >
+              🎰 赌徒破产问题模拟
+            </Link>
+          </nav>
+
           {/* 右侧：控制按钮 */}
           <div className="navbar-controls">
             {/* 语言切换 */}
@@ -48,7 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 </button>
               ))}
             </div>
-            
+
             {/* 主题切换 */}
             <button
               onClick={onThemeToggle}

@@ -1,0 +1,34 @@
+.simulator-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.simulator-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.vertical-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.panel-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .simulator-main {
+    padding: 1rem 0.5rem;
+  }
+
+  .vertical-layout {
+    gap: 1rem;
+  }
+}

@@ -26,7 +26,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
+  height: 50px;
+  gap: 1rem;
 }
 
 /* 品牌区域 */
@@ -64,6 +65,51 @@
 .dark .navbar-title {
   color: #fef2f2;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 导航菜单 */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.menu-item {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.menu-item.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.dark .menu-item {
+  color: rgba(254, 242, 242, 0.8);
+}
+
+.dark .menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fef2f2;
+}
+
+.dark .menu-item.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #991b1b;
 }
 
 /* 控制区域 */
@@ -181,28 +227,34 @@
 }
 
 /* 响应式设计 */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   .navbar-container {
     padding: 0 0.5rem;
   }
-  
+
   .navbar-title {
     font-size: 13px;
   }
-  
+
   .language-button {
     padding: 3px 6px;
   }
-  
+
   .language-code {
     display: none;
   }
-  
+
   .theme-toggle {
     width: 28px;
     height: 28px;
   }
-  
+
   .theme-icon {
     font-size: 14px;
   }
