@@ -38,30 +38,30 @@ function App() {
     <div className={`min-h-screen ${isDarkMode ? 'dark bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-blue-50 via-white to-indigo-50'}`}>
       {/* 头部导航 */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm dark:bg-gray-800/80 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-1">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center shadow-lg">
-                <span className="text-sm">🎲</span>
+        <div className="max-w-[1920px] mx-auto px-2 sm:px-3 lg:px-4">
+          <div className="flex justify-between items-center py-0.5">
+            <div className="flex items-center space-x-1">
+              <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded flex items-center justify-center shadow-sm">
+                <span className="text-xs">🎲</span>
               </div>
               <div>
-                <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">
+                <h1 className="text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400 leading-none">
                   {t('simulation.title')}
                 </h1>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-none mt-0.5">
                   {t('simulation.description')}
                 </p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-0.5">
               {/* 语言切换 */}
-              <div className="flex bg-gray-100 dark:bg-gray-700 rounded-md p-0.5 shadow-inner">
+              <div className="flex bg-gray-100 dark:bg-gray-700 rounded p-0.5 shadow-inner">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
-                    className={`px-2 py-1 rounded-sm text-xs font-medium transition-all duration-200 ${
+                    className={`px-1 py-0.5 rounded text-xs font-medium transition-all duration-200 ${
                       currentLanguage === lang.code
                         ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm scale-105'
                         : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:scale-105'
@@ -77,11 +77,11 @@ function App() {
               {/* 主题切换 */}
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="p-1.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 hover:scale-110 shadow-sm"
+                className="p-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 hover:scale-110 shadow-sm"
                 title={isDarkMode ? '切换到浅色模式' : '切换到深色模式'}
                 aria-label={isDarkMode ? '切换到浅色模式' : '切换到深色模式'}
               >
-                <span className="text-sm">{isDarkMode ? '☀️' : '🌙'}</span>
+                <span className="text-xs">{isDarkMode ? '☀️' : '🌙'}</span>
               </button>
             </div>
           </div>
