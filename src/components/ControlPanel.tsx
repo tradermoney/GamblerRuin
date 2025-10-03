@@ -115,28 +115,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
         </button>
       </div>
 
-      {/* 速度控制 */}
-      <div className={styles.speedControl}>
-        <label className={styles.speedLabel}>
-          模拟速度
-        </label>
-        <div className={styles.speedButtons}>
-          {[0.5, 1, 2, 5, 10].map((speed) => (
-            <button
-              key={speed}
-              onClick={() => handleSpeedChange(speed)}
-              className={`${styles.speedButton} ${
-                simulationSpeed === speed ? styles.active : ''
-              }`}
-            >
-              {speed}x
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* 状态指示器 */}
-      <div className={styles.statusGrid}>
+      {/* 状态和速度控制 */}
+      <div className={styles.statusAndSpeedGrid}>
         <div className={styles.statusItem}>
           <div className={styles.statusLabel}>状态</div>
           <div className={styles.statusValue}>
@@ -145,10 +125,20 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
              '已停止'}
           </div>
         </div>
-        <div className={styles.statusItem}>
-          <div className={styles.statusLabel}>速度</div>
-          <div className={styles.statusValue}>
-            {simulationSpeed}x
+        <div className={styles.speedControlCompact}>
+          <div className={styles.speedLabelCompact}>模拟速度</div>
+          <div className={styles.speedButtons}>
+            {[0.5, 1, 2, 5, 10].map((speed) => (
+              <button
+                key={speed}
+                onClick={() => handleSpeedChange(speed)}
+                className={`${styles.speedButton} ${
+                  simulationSpeed === speed ? styles.active : ''
+                }`}
+              >
+                {speed}x
+              </button>
+            ))}
           </div>
         </div>
       </div>

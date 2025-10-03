@@ -143,68 +143,90 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({ className = '' }) => {
           </div>
         </div>
 
-        <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-          <label className={styles.label}>投注策略</label>
-          <select
-            value={config.strategy}
-            onChange={(e) => handleConfigChange('strategy', e.target.value as 'fixed' | 'martingale' | 'proportional')}
-            disabled={isRunning}
-            className={styles.select}
-          >
-            <option value="fixed">固定赌注</option>
-            <option value="martingale">马丁格尔策略</option>
-            <option value="proportional">比例策略</option>
-          </select>
+        <div className={styles.formRow}>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>投注策略</label>
+            <select
+              value={config.strategy}
+              onChange={(e) => handleConfigChange('strategy', e.target.value as 'fixed' | 'martingale' | 'proportional')}
+              disabled={isRunning}
+              className={styles.select}
+            >
+              <option value="fixed">固定赌注</option>
+              <option value="martingale">马丁格尔策略</option>
+              <option value="proportional">比例策略</option>
+            </select>
+          </div>
+          
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>随机种子（可选）</label>
+            <input
+              type="text"
+              value={config.seed || ''}
+              onChange={(e) => handleConfigChange('seed', e.target.value || null)}
+              disabled={isRunning}
+              placeholder="留空则使用随机种子"
+              className={styles.input}
+            />
+          </div>
         </div>
 
         {config.strategy === 'proportional' && (
-          <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-            <label className={styles.label}>
-              投注比例 (0-1)
-            </label>
-            <input
-              type="number"
-              min="0.01"
-              max="1"
-              step="0.01"
-              value={config.proportion || 0.1}
-              onChange={(e) => handleConfigChange('proportion', safeParseNumber(e.target.value, 0.1))}
-              disabled={isRunning}
-              className={`${styles.input} ${getFieldError('proportion') ? styles.inputError : ''}`}
-            />
-            {getFieldError('proportion') && (
-              <div className={styles.errorMessage}>{getFieldError('proportion')}</div>
-            )}
+          <div className={styles.formRow}>
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>
+                投注比例 (0-1)
+              </label>
+              <input
+                type="number"
+                min="0.01"
+                max="1"
+                step="0.01"
+                value={config.proportion || 0.1}
+                onChange={(e) => handleConfigChange('proportion', safeParseNumber(e.target.value, 0.1))}
+                disabled={isRunning}
+                className={`${styles.input} ${getFieldError('proportion') ? styles.inputError : ''}`}
+              />
+              {getFieldError('proportion') && (
+                <div className={styles.errorMessage}>{getFieldError('proportion')}</div>
+              )}
+            </div>
+            
+            <div className={styles.inputGroup}>
+              <label className={styles.label}>批量模拟次数</label>
+              <input
+                type="number"
+                min="1"
+                max="1000000"
+                value={config.runs}
+                onChange={(e) => handleConfigChange('runs', safeParseInt(e.target.value, 10000))}
+                disabled={isRunning}
+                className={`${styles.input} ${getFieldError('runs') ? styles.inputError : ''}`}
+              />
+              {getFieldError('runs') && (
+                <div className={styles.errorMessage}>{getFieldError('runs')}</div>
+              )}
+            </div>
           </div>
         )}
 
-        <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-          <label className={styles.label}>随机种子（可选）</label>
-          <input
-            type="text"
-            value={config.seed || ''}
-            onChange={(e) => handleConfigChange('seed', e.target.value || null)}
-            disabled={isRunning}
-            placeholder="留空则使用随机种子"
-            className={styles.input}
-          />
-        </div>
-
-        <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-          <label className={styles.label}>批量模拟次数</label>
-          <input
-            type="number"
-            min="1"
-            max="1000000"
-            value={config.runs}
-            onChange={(e) => handleConfigChange('runs', safeParseInt(e.target.value, 10000))}
-            disabled={isRunning}
-            className={`${styles.input} ${getFieldError('runs') ? styles.inputError : ''}`}
-          />
-          {getFieldError('runs') && (
-            <div className={styles.errorMessage}>{getFieldError('runs')}</div>
-          )}
-        </div>
+        {config.strategy !== 'proportional' && (
+          <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
+            <label className={styles.label}>批量模拟次数</label>
+            <input
+              type="number"
+              min="1"
+              max="1000000"
+              value={config.runs}
+              onChange={(e) => handleConfigChange('runs', safeParseInt(e.target.value, 10000))}
+              disabled={isRunning}
+              className={`${styles.input} ${getFieldError('runs') ? styles.inputError : ''}`}
+            />
+            {getFieldError('runs') && (
+              <div className={styles.errorMessage}>{getFieldError('runs')}</div>
+            )}
+          </div>
+        )}
       </div>
 
       {validationErrors.length > 0 && (
