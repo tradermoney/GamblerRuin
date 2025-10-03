@@ -4,6 +4,7 @@ import type { PieLabelRenderProps } from 'recharts';
 import useSimulationStore from '../store/simulationStore';
 import type { SingleRunResult } from '../types/simulation';
 import { useVisualizationPersistence } from '../hooks/usePersistence';
+import HelpIcon from './HelpIcon';
 import styles from './VisualizationPanel.module.css';
 
 interface VisualizationPanelProps {
@@ -130,7 +131,10 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
       
       {/* 结果分布饼图 */}
       <div className={styles.chartSection}>
-        <h3 className={styles.chartTitle}>结果分布</h3>
+        <h3 className={styles.chartTitle}>
+          结果分布
+          <HelpIcon content="显示批量模拟中破产、成功和进行中的结果比例分布。" />
+        </h3>
         <div className={styles.chartContainer}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
@@ -159,7 +163,10 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
 
       {/* 轮次分布直方图 */}
       <div className={styles.chartSection}>
-        <h3 className={styles.chartTitle}>轮次分布</h3>
+        <h3 className={styles.chartTitle}>
+          轮次分布
+          <HelpIcon content="显示不同轮次范围内的模拟次数分布，帮助了解大多数模拟需要多少轮才结束。" />
+        </h3>
         <div className={styles.chartContainer}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={getRoundsDistribution()}>
@@ -175,7 +182,10 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
 
       {/* 最终资金散点图 */}
       <div className={styles.chartSection}>
-        <h3 className={styles.chartTitle}>最终资金分布</h3>
+        <h3 className={styles.chartTitle}>
+          最终资金分布
+          <HelpIcon content="显示每次模拟结束时的最终资金数量，可观察资金的变化趋势和波动范围。" />
+        </h3>
         <div className={styles.chartContainer}>
           <ResponsiveContainer width="100%" height="100%">
             <ScatterChart data={getFinalCapitalData()}>
@@ -191,26 +201,41 @@ const VisualizationPanel: React.FC<VisualizationPanelProps> = ({ className = '' 
 
       {/* 统计摘要 */}
       <div className={styles.summarySection}>
-        <h3 className={styles.summaryTitle}>统计摘要</h3>
+        <h3 className={styles.summaryTitle}>
+          统计摘要
+          <HelpIcon content="汇总所有批量模拟的关键统计数据，包括运行次数、破产率、成功率和平均轮次。" />
+        </h3>
         <div className={styles.summaryGrid}>
           <div className={styles.summaryItem}>
-            <div className={styles.summaryLabel}>总运行次数</div>
+            <div className={styles.summaryLabel}>
+              总运行次数
+              <HelpIcon content="批量模拟执行的总次数。" />
+            </div>
             <div className={styles.summaryValue}>{batchResult.results.length}</div>
           </div>
           <div className={styles.summaryItem}>
-            <div className={styles.summaryLabel}>破产率</div>
+            <div className={styles.summaryLabel}>
+              破产率
+              <HelpIcon content="在所有模拟中，资金归零（破产）的比例。破产率越高表示风险越大。" />
+            </div>
             <div className={`${styles.summaryValue} ${styles.danger}`}>
               {((batchResult.results.filter((r: SingleRunResult) => r.bankrupt).length / batchResult.results.length) * 100).toFixed(1)}%
             </div>
           </div>
           <div className={styles.summaryItem}>
-            <div className={styles.summaryLabel}>成功率</div>
+            <div className={styles.summaryLabel}>
+              成功率
+              <HelpIcon content="在所有模拟中，达到目标资金的比例。成功率越高表示策略越有效。" />
+            </div>
             <div className={`${styles.summaryValue} ${styles.success}`}>
               {((batchResult.results.filter((r: SingleRunResult) => r.reachedTarget).length / batchResult.results.length) * 100).toFixed(1)}%
             </div>
           </div>
           <div className={styles.summaryItem}>
-            <div className={styles.summaryLabel}>平均轮次</div>
+            <div className={styles.summaryLabel}>
+              平均轮次
+              <HelpIcon content="所有模拟的平均投注轮数。可用于评估达到结果所需的时间成本。" />
+            </div>
             <div className={styles.summaryValue}>
               {(batchResult.results.reduce((sum: number, r: SingleRunResult) => sum + r.rounds, 0) / batchResult.results.length).toFixed(1)}
             </div>

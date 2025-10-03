@@ -1,6 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import useSimulationStore from '../store/simulationStore';
+import HelpIcon from './HelpIcon';
 import styles from './SimulationDisplay.module.css';
 
 interface SimulationDisplayProps {
@@ -48,28 +49,40 @@ const SimulationDisplay: React.FC<SimulationDisplayProps> = ({ className = '' })
       {/* 当前状态 */}
       <div className={styles.statsGrid}>
         <div className={styles.statCard}>
-          <div className={styles.statLabel}>当前资金</div>
+          <div className={styles.statLabel}>
+            当前资金
+            <HelpIcon content="模拟进行过程中的实时资金数量。" />
+          </div>
           <div className={styles.statValue}>
             {currentCapital}
           </div>
         </div>
-        
+
         <div className={styles.statCard}>
-          <div className={styles.statLabel}>当前轮次</div>
+          <div className={styles.statLabel}>
+            当前轮次
+            <HelpIcon content="已经进行的投注轮数。" />
+          </div>
           <div className={styles.statValue}>
             {currentRound}
           </div>
         </div>
-        
+
         <div className={styles.statCard}>
-          <div className={styles.statLabel}>初始资金</div>
+          <div className={styles.statLabel}>
+            初始资金
+            <HelpIcon content="模拟开始时的资金数量。" />
+          </div>
           <div className={styles.statValue}>
             {config.initialCapital}
           </div>
         </div>
-        
+
         <div className={styles.statCard}>
-          <div className={styles.statLabel}>目标资金</div>
+          <div className={styles.statLabel}>
+            目标资金
+            <HelpIcon content="希望达到的资金目标。达到此数值时模拟将停止。" />
+          </div>
           <div className={styles.statValue}>
             {config.targetCapital || '∞'}
           </div>

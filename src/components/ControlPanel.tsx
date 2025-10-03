@@ -3,6 +3,7 @@ import useSimulationStore from '../store/simulationStore';
 import { validateSimulationConfig, safeParseNumber, safeParseInt } from '../utils/validation';
 import type { ValidationError } from '../utils/validation';
 import type { SimulationConfig } from '../types/simulation';
+import HelpIcon from './HelpIcon';
 import styles from './ControlPanel.module.css';
 
 interface ControlPanelProps {
@@ -83,7 +84,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
           {/* 第一行：资金相关 */}
           <div className={styles.formRow}>
             <div className={styles.inputGroup}>
-              <label className={styles.label}>初始资金</label>
+              <label className={styles.label}>
+                初始资金
+                <HelpIcon content="赌徒开始时拥有的资金数量。必须大于0，建议设置为10-100之间的值。" />
+              </label>
               <input
                 type="number"
                 min="1"
@@ -98,7 +102,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
             </div>
             
             <div className={styles.inputGroup}>
-              <label className={styles.label}>目标资金</label>
+              <label className={styles.label}>
+                目标资金
+                <HelpIcon content="赌徒希望达到的资金目标。达到此目标时模拟将停止。留空表示无限制，仅在破产或达到最大轮数时停止。" />
+              </label>
               <input
                 type="number"
                 min={config.initialCapital}
@@ -114,7 +121,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
             </div>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>单轮赌注</label>
+              <label className={styles.label}>
+                单轮赌注
+                <HelpIcon content="每次投注的金额。在固定策略下，每轮投注此金额。必须大于0且不能超过当前资金。" />
+              </label>
               <input
                 type="number"
                 min="1"
@@ -132,7 +142,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
           {/* 第二行：概率和策略相关 */}
           <div className={styles.formRow}>
             <div className={styles.inputGroup}>
-              <label className={styles.label}>单轮胜率</label>
+              <label className={styles.label}>
+                单轮胜率
+                <HelpIcon content="每次投注获胜的概率。范围为0-1之间。0.5表示公平赌局，小于0.5对庄家有利，大于0.5对玩家有利。" />
+              </label>
               <input
                 type="number"
                 min="0"
@@ -149,7 +162,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
             </div>
             
             <div className={styles.inputGroup}>
-              <label className={styles.label}>单轮赔率</label>
+              <label className={styles.label}>
+                单轮赔率
+                <HelpIcon content="获胜时的赔付倍数。例如赔率为1表示赢了可获得与赌注相等的收益，赔率为2表示获得双倍收益。" />
+              </label>
               <input
                 type="number"
                 min="0.1"
@@ -165,7 +181,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
             </div>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>投注策略</label>
+              <label className={styles.label}>
+                投注策略
+                <HelpIcon content="固定赌注：每次投注固定金额；马丁格尔策略：输了加倍下注；比例策略：按当前资金比例投注。" />
+              </label>
               <select
                 value={config.strategy}
                 onChange={(e) => handleConfigChange('strategy', e.target.value as 'fixed' | 'martingale' | 'proportional')}
@@ -182,7 +201,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
           {/* 第三行：轮数和种子 */}
           <div className={styles.formRow}>
             <div className={styles.inputGroup}>
-              <label className={styles.label}>最大轮数</label>
+              <label className={styles.label}>
+                最大轮数
+                <HelpIcon content="单次模拟的最大轮数限制。达到此轮数后，即使未破产或未达标，模拟也会停止。用于防止无限循环。" />
+              </label>
               <input
                 type="number"
                 min="1"
@@ -195,9 +217,12 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
                 <div className={styles.errorMessage}>{getFieldError('maxRounds')}</div>
               )}
             </div>
-            
+
             <div className={styles.inputGroup}>
-              <label className={styles.label}>批量模拟次数</label>
+              <label className={styles.label}>
+                批量模拟次数
+                <HelpIcon content="批量模拟时运行的次数。运行次数越多，统计结果越准确，但计算时间也越长。建议设置为1000-100000之间。" />
+              </label>
               <input
                 type="number"
                 min="1"
@@ -213,7 +238,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
             </div>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>随机种子</label>
+              <label className={styles.label}>
+                随机种子
+                <HelpIcon content="用于生成随机数的种子。使用相同种子可以重现相同的模拟结果。留空则每次使用不同的随机种子。" />
+              </label>
               <input
                 type="text"
                 value={config.seed || ''}
@@ -229,7 +257,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
           {config.strategy === 'proportional' && (
             <div className={styles.formRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>投注比例 (0-1)</label>
+                <label className={styles.label}>
+                  投注比例 (0-1)
+                  <HelpIcon content="使用比例策略时，每轮投注金额为当前资金的此比例。例如0.1表示每次投注当前资金的10%。" />
+                </label>
                 <input
                   type="number"
                   min="0.01"

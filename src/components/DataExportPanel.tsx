@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
 import useSimulationStore from '../store/simulationStore';
 import { useExportPersistence } from '../hooks/usePersistence';
+import HelpIcon from './HelpIcon';
 import styles from './DataExportPanel.module.css';
 
 interface DataExportPanelProps {
@@ -186,7 +187,10 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
       
       {/* 数据导出 */}
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>数据导出</h3>
+        <h3 className={styles.sectionTitle}>
+          数据导出
+          <HelpIcon content="将批量模拟的结果导出为CSV或完整报告，方便进行数据分析和存档。" />
+        </h3>
         <div className={styles.buttonGroup}>
           <button
             onClick={exportToCSV}
@@ -195,7 +199,7 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
           >
             {isExporting ? '导出中...' : '导出CSV数据'}
           </button>
-          
+
           <button
             onClick={exportReport}
             disabled={isExporting || !batchResult || !batchResult.results || batchResult.results.length === 0}
@@ -208,7 +212,10 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
 
       {/* 导出设置 */}
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>导出设置</h3>
+        <h3 className={styles.sectionTitle}>
+          导出设置
+          <HelpIcon content="自定义导出数据的格式选项，包括表头、小数位数和编码格式。" />
+        </h3>
         <div className={styles.settingsGrid}>
           <div className={styles.settingItem}>
             <label className={styles.settingLabel}>
@@ -222,12 +229,14 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
                 className={styles.settingCheckbox}
               />
               包含表头
+              <HelpIcon content="导出CSV时是否包含字段名称的表头行。" />
             </label>
           </div>
-          
+
           <div className={styles.settingItem}>
             <label className={styles.settingLabel}>
               小数位数:
+              <HelpIcon content="导出数据中小数的保留位数。" />
               <select
                 value={typeof exportSettings.decimalPlaces === 'number' ? exportSettings.decimalPlaces : 2}
                 onChange={(e) => setExportSettings(prev => ({
@@ -248,6 +257,7 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
           <div className={styles.settingItem}>
             <label className={styles.settingLabel}>
               编码格式:
+              <HelpIcon content="CSV文件的字符编码格式。UTF-8适用于大多数现代软件，GBK适用于中文Excel。" />
               <select
                 value={exportSettings.csvFormat}
                 onChange={(e) => setExportSettings(prev => ({
@@ -266,7 +276,10 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
 
       {/* 配置管理 */}
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>配置管理</h3>
+        <h3 className={styles.sectionTitle}>
+          配置管理
+          <HelpIcon content="保存和加载模拟参数配置，方便复用常用的参数设置组合。" />
+        </h3>
         <div className={styles.buttonGroup}>
           <button
             onClick={exportConfig}
@@ -292,7 +305,10 @@ const DataExportPanel: React.FC<DataExportPanelProps> = ({ className = '' }) => 
       {/* 数据预览 */}
       {batchResult && batchResult.results && batchResult.results.length > 0 && (
         <div className={styles.previewSection}>
-          <h3 className={styles.previewTitle}>数据预览</h3>
+          <h3 className={styles.previewTitle}>
+            数据预览
+            <HelpIcon content="快速查看当前批量模拟结果的关键统计信息摘要。" />
+          </h3>
           <div className={styles.previewGrid}>
             <div className={styles.previewItem}>
               <span className={styles.previewLabel}>总记录数:</span>
