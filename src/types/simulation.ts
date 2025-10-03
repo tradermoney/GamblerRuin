@@ -9,6 +9,12 @@ export interface SimulationConfig {
   strategy: 'fixed' | 'martingale' | 'proportional';
   proportion?: number;
   seed?: string;
+  stopLossAmount?: number | null;
+  takeProfitAmount?: number | null;
+  minBetSize?: number;
+  maxBetSize?: number;
+  streakResetCount?: number;
+  commissionRate?: number;
 }
 
 export interface SingleRunResult {
@@ -56,5 +62,11 @@ export const defaultConfig: SimulationConfig = {
   runs: 10000,
   strategy: 'fixed',
   proportion: 0.1,
-  seed: undefined
+  seed: undefined,
+  stopLossAmount: null,
+  takeProfitAmount: null,
+  minBetSize: 1,
+  maxBetSize: 100,
+  streakResetCount: 5,
+  commissionRate: 0
 };

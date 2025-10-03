@@ -57,9 +57,9 @@
 }
 
 .formGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
 }
 
 
@@ -374,16 +374,14 @@
 
 /* 响应式设计 */
 @media (max-width: 1400px) {
-  .formRow {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 3px;
+  .formGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 1200px) {
-  .formRow {
-    grid-template-columns: 1fr 1fr;
-    gap: 3px;
+  .formGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -392,16 +390,15 @@
     padding: 6px;
     margin-bottom: 8px;
   }
-  
+
   .configSection {
     padding: 4px;
     margin-bottom: 6px;
   }
-  
-  .formRow {
+
+  .formGrid {
     grid-template-columns: 1fr;
     gap: 2px;
-    margin-bottom: 2px;
   }
   
   .buttonGroup {
