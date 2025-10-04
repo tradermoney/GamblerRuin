@@ -38,7 +38,7 @@ const TimelineChart: React.FC<TimelineChartProps> = ({ type }) => {
           { capital: 90, rounds: 1050 }
         ];
 
-      case 'capital':
+      case 'capital': {
         // 典型的资金变化轨迹
         let capital = 50;
         const data = [{ round: 0, capital: 50 }];
@@ -49,6 +49,7 @@ const TimelineChart: React.FC<TimelineChartProps> = ({ type }) => {
           if (capital === 0 || capital === 100) break;
         }
         return data;
+      }
 
       default:
         return [];

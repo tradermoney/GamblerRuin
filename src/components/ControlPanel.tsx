@@ -446,34 +446,17 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ className = '' }) => {
         </div>
         <div className={styles.speedControlCompact}>
           <div className={styles.speedLabelCompact}>模拟速度</div>
-          <div className={styles.speedButtons}>
-            {[0.5, 1, 2, 5, 10].map((speed) => (
-              <button
-                key={speed}
-                onClick={() => handleSpeedChange(speed)}
-                className={`${styles.speedButton} ${
-                  simulationSpeed === speed ? styles.active : ''
-                }`}
-              >
-                {speed}x
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* 快捷键提示 */}
-      <div className={styles.shortcuts}>
-        <p className={styles.shortcutsTitle}>快捷键:</p>
-        <div className={styles.shortcutsList}>
-          <div className={styles.shortcutItem}>
-            <span className={styles.shortcutKey}>空格</span> - 开始/暂停
-          </div>
-          <div className={styles.shortcutItem}>
-            <span className={styles.shortcutKey}>ESC</span> - 停止
-          </div>
-          <div className={styles.shortcutItem}>
-            <span className={styles.shortcutKey}>R</span> - 重置
+          <div className={styles.speedSlider}>
+            <input
+              type="range"
+              min="0.5"
+              max="100"
+              step="0.5"
+              value={simulationSpeed}
+              onChange={(e) => handleSpeedChange(Number(e.target.value))}
+              className={styles.slider}
+            />
+            <div className={styles.speedValue}>{simulationSpeed}x</div>
           </div>
         </div>
       </div>

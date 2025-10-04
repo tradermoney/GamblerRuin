@@ -2,19 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-interface NavbarProps {
-  title: string;
-  currentLanguage: string;
-  languages: Array<{ code: string; name: string; flag: string }>;
-  onLanguageChange: (code: string) => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({
-  title,
-  currentLanguage,
-  languages,
-  onLanguageChange,
-}) => {
+const Navbar: React.FC = () => {
   const location = useLocation();
 
   return (
@@ -27,7 +15,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <span className="navbar-logo-icon">🎲</span>
             </div>
             <h1 className="navbar-title">
-              {title}
+              赌徒破产模拟器
             </h1>
           </div>
 
@@ -49,21 +37,6 @@ const Navbar: React.FC<NavbarProps> = ({
 
           {/* 右侧：控制按钮 */}
           <div className="navbar-controls">
-            {/* 语言切换 */}
-            <div className="language-switcher">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => onLanguageChange(lang.code)}
-                  className={`language-button ${currentLanguage === lang.code ? 'active' : ''}`}
-                  title={`切换到${lang.name}`}
-                >
-                  <span className="language-flag">{lang.flag}</span>
-                  <span className="language-code">{lang.code.toUpperCase()}</span>
-                </button>
-              ))}
-            </div>
-
             {/* GitHub链接 */}
             <a
               href="https://github.com/tradermoney/GamblerRuin"

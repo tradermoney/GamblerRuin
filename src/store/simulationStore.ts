@@ -27,7 +27,7 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
   currentCapital: defaultConfig.initialCapital,
   currentRound: 0,
   isPaused: false,
-  simulationSpeed: 1,
+  simulationSpeed: 5,
   isConfigLoaded: false,
 
   setConfig: (config) => {

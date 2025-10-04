@@ -1,200 +1,242 @@
-# 赌徒破产模拟器 (GamblerRuin)
+# GamblerRuin - Gambler's Ruin Problem Simulator
 
-一个交互式的赌徒破产问题仿真系统，使用React + TypeScript + Vite构建。
+**🌐 [中文文档](README.zh-CN.md)**
 
-## 🎯 项目简介
+**🎰 Online Demo: https://tradermoney.github.io/GamblerRuin/**
 
-赌徒破产模拟器是一个用于模拟和分析赌徒破产问题的交互式工具。用户可以设置不同的参数（初始资金、目标资金、胜率、赔率等），观察在不同策略下的破产概率和资金变化趋势。
+An interactive simulation system for the Gambler's Ruin problem, built with React + TypeScript + Vite.
 
-## ✨ 主要功能
+## 🎯 Project Overview
 
-- **参数配置**：灵活设置模拟参数
-- **实时仿真**：支持单次和批量模拟
-- **可视化分析**：图表展示资金变化趋势
-- **数据导出**：支持CSV和JSON格式导出
-- **多语言支持**：中英文界面切换
-- **响应式设计**：适配各种设备尺寸
-- **持久化存储**：使用IndexedDB保存配置
+The Gambler's Ruin Simulator is an interactive tool for simulating and analyzing the classic Gambler's Ruin problem. Users can configure various parameters (initial capital, target capital, win probability, payout odds, etc.) and observe bankruptcy probabilities and capital change trends under different betting strategies.
 
-## 🚀 快速开始
+## ✨ Key Features
 
-### 本地开发
+- **Parameter Configuration**: Flexible simulation parameter settings with 16+ configurable options
+- **Real-time Simulation**: Support for single-run and batch simulations
+- **Visual Analysis**: Chart-based visualization of capital changes over time
+- **Data Export**: Export simulation data in CSV and JSON formats
+- **Responsive Design**: Adapts to various device screen sizes
+- **Persistent Storage**: Save configurations using IndexedDB
+- **Performance Metrics**: Real-time performance monitoring and optimization
+- **Interactive Charts**: Dynamic visualization with Recharts library
+
+## 🚀 Quick Start
+
+### Local Development
 
 ```bash
-# 安装依赖
+# Install dependencies
 npm install
 
-# 启动开发服务器
+# Start development server
 npm run dev
 
-# 构建生产版本
+# Build for production
 npm run build
 
-# 预览生产版本
+# Preview production build
 npm run preview
 ```
 
-### GitHub Pages 部署
+### GitHub Pages Deployment
 
-#### 方式一：GitHub Actions（推荐）
+#### Method 1: GitHub Actions (Recommended)
 
-1. **启用GitHub Pages**：
-   - 进入仓库的 Settings → Pages
-   - Source 选择 "GitHub Actions"
+1. **Enable GitHub Pages**:
+   - Navigate to repository Settings → Pages
+   - Set Source to "GitHub Actions"
 
-2. **自动部署**：
-   - 推送代码到 `main` 分支
-   - GitHub Actions 会自动构建并部署
+2. **Automatic Deployment**:
+   - Push code to `main` branch
+   - GitHub Actions will automatically build and deploy
 
-3. **访问地址**：
-   - `https://[用户名].github.io/GamblerRuin/`
+3. **Access URL**:
+   - `https://[username].github.io/GamblerRuin/`
 
-#### 方式二：手动部署
+#### Method 2: Manual Deployment
 
 ```bash
-# 安装依赖
+# Install dependencies
 npm install
 
-# 构建项目
+# Build project
 npm run build
 
-# 部署到GitHub Pages
+# Deploy to GitHub Pages
 npm run deploy
 ```
 
-#### 本地预览GitHub Pages版本
+#### Preview GitHub Pages Version Locally
 
 ```bash
 npm run preview:github
 ```
 
-## 🛠️ 技术栈
+## 🛠️ Tech Stack
 
-- **前端框架**：React 19.1.1
-- **开发语言**：TypeScript
-- **构建工具**：Vite
-- **状态管理**：Zustand
-- **图表库**：Recharts
-- **样式方案**：CSS Modules
-- **测试框架**：Playwright
-- **部署平台**：GitHub Pages
+- **Frontend Framework**: React 19.1.1
+- **Programming Language**: TypeScript
+- **Build Tool**: Vite (rolldown-vite 7.1.12)
+- **State Management**: Zustand
+- **Charting Library**: Recharts
+- **Styling**: CSS Modules
+- **Testing Framework**: Playwright
+- **Router**: React Router DOM
+- **Deployment**: GitHub Pages
+- **Random Number Generation**: seedrandom
+- **File Export**: file-saver
 
-## 📁 项目结构
+## 📁 Project Structure
 
 ```
 src/
-├── components/          # React组件
-│   ├── ConfigPanel.tsx     # 配置面板
-│   ├── ControlPanel.tsx    # 控制面板
-│   ├── SimulationDisplay.tsx # 模拟展示
-│   ├── VisualizationPanel.tsx # 可视化面板
-│   ├── DataExportPanel.tsx # 数据导出面板
-│   └── Navbar.tsx         # 导航栏
-├── hooks/              # 自定义Hooks
-├── store/              # 状态管理
-├── utils/              # 工具函数
-├── types/              # 类型定义
-└── i18n/               # 国际化
+├── components/          # React components
+│   ├── ConfigPanel.tsx       # Configuration panel
+│   ├── ControlPanel.tsx      # Control panel with 16 parameters
+│   ├── SimulationDisplay.tsx # Simulation display
+│   ├── VisualizationPanel.tsx # Visualization panel
+│   ├── DataExportPanel.tsx   # Data export panel
+│   ├── PerformanceMetrics.tsx # Performance monitoring
+│   ├── TimelineChart.tsx     # Timeline chart component
+│   ├── StateTransitionGraph.tsx # State transition graph
+│   ├── FormulaExplanation.tsx # Mathematical formula explanation
+│   ├── Navbar.tsx           # Navigation bar
+│   ├── Tooltip.tsx          # Custom tooltip component
+│   └── HelpIcon.tsx         # Help icon component
+├── pages/              # Page components
+│   ├── Introduction.tsx     # Introduction page
+│   └── Simulator.tsx        # Simulator page
+├── hooks/              # Custom React Hooks
+├── store/              # State management (Zustand)
+│   └── simulationStore.ts   # Simulation state store
+├── utils/              # Utility functions
+└── types/              # TypeScript type definitions
 ```
 
-## 🎮 使用说明
+## 🎮 Usage Guide
 
-1. **设置参数**：
-   - 初始资金：开始时的资金数量
-   - 目标资金：希望达到的资金目标
-   - 单轮赌注：每次投注的金额
-   - 单轮胜率：每次投注获胜的概率
-   - 单轮赔率：获胜时的赔率倍数
+### 1. Parameter Configuration
 
-2. **选择策略**：
-   - 固定金额：每次投注固定金额
-   - 比例投注：按当前资金的一定比例投注
+**Basic Parameters**:
+- **Initial Capital**: Starting amount of money
+- **Target Capital**: Goal amount to reach
+- **Max Rounds**: Maximum number of betting rounds
+- **Single Bet Amount**: Amount to bet per round
+- **Win Probability**: Probability of winning each bet (0-1)
+- **Payout Odds**: Multiplier when winning (e.g., 2 means double your bet)
 
-3. **开始模拟**：
-   - 单次模拟：观察一次完整的资金变化
-   - 批量模拟：进行多次模拟并统计分析
+**Advanced Parameters**:
+- **Betting Strategy**:
+  - Fixed Amount: Bet a fixed amount each round
+  - Proportional: Bet a percentage of current capital
+- **Bet Ratio**: For proportional strategy, percentage of capital to bet
+- **Batch Simulation Count**: Number of simulations to run in batch mode
+- **Random Seed**: Optional seed for reproducible results
+- **Display Interval**: Update frequency for visualization (milliseconds)
 
-4. **查看结果**：
-   - 实时图表显示资金变化
-   - 统计信息显示破产概率等数据
-   - 支持导出数据进行分析
+### 2. Running Simulations
 
-## 🔧 开发指南
+- **Single Simulation**: Observe one complete capital change trajectory
+- **Batch Simulation**: Run multiple simulations and view statistical analysis
+- **Pause/Resume**: Control simulation execution
+- **Reset**: Clear current results and start fresh
 
-### 环境要求
+### 3. Viewing Results
+
+- **Real-time Charts**: Dynamic visualization of capital changes
+- **Statistical Information**: View bankruptcy probability, average rounds, and other metrics
+- **Performance Metrics**: Monitor simulation performance and optimization stats
+- **Data Export**: Export simulation results for further analysis
+
+## 🔧 Development Guide
+
+### Environment Requirements
 
 - Node.js 18+
-- npm 或 yarn
+- npm or yarn
 
-### 代码规范
+### Code Quality
 
-项目使用ESLint进行代码检查：
+Run ESLint for code linting:
 
 ```bash
 npm run lint
 ```
 
-### 测试
+### Testing
 
-项目使用Playwright进行端到端测试：
+The project uses Playwright for end-to-end testing:
 
 ```bash
-# 运行测试
+# Run tests
 npx playwright test
 
-# 查看测试报告
+# View test report
 npx playwright show-report
 ```
 
-## 📊 性能优化
+## 📊 Performance Optimizations
 
-- **代码分割**：使用动态导入优化加载性能
-- **资源压缩**：生产环境自动压缩CSS和JS
-- **缓存策略**：合理设置资源缓存
-- **响应式图片**：根据设备选择合适的图片尺寸
+- **Code Splitting**: Dynamic imports for optimized loading
+- **Resource Compression**: Automatic minification in production
+- **Caching Strategy**: Smart resource caching
+- **Responsive Design**: Optimized for all device sizes
+- **Virtual DOM**: React 19 with concurrent features
+- **Web Workers**: Offload heavy computations (planned)
 
-## 🌐 浏览器支持
+## 🌐 Browser Support
 
 - Chrome 90+
 - Firefox 88+
 - Safari 14+
 - Edge 90+
 
-## 📝 更新日志
+## 📝 Changelog
+
+### Latest Updates
+- Removed i18n infrastructure, using simplified Chinese interface
+- Fixed tooltip positioning issues with React Portal implementation
+- Optimized control panel layout to 4-column grid with 16 parameters
+- Added performance metrics monitoring
+- Added state transition graph and formula explanations
+- Implemented GitHub link in navigation
+- Enhanced data export functionality
 
 ### v1.0.0
-- 初始版本发布
-- 基础模拟功能
-- 可视化图表
-- 数据导出功能
-- 多语言支持
+- Initial release
+- Basic simulation functionality
+- Visualization charts
+- Data export feature
+- Responsive design
 
-## 🤝 贡献指南
+## 🤝 Contributing
 
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开 Pull Request
+1. Fork this repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 许可证
+## 📄 License
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 致谢
+## 🙏 Acknowledgments
 
-- [React](https://reactjs.org/) - 用户界面库
-- [Vite](https://vitejs.dev/) - 构建工具
-- [Recharts](https://recharts.org/) - 图表库
-- [Zustand](https://zustand-demo.pmnd.rs/) - 状态管理
+- [React](https://reactjs.org/) - User interface library
+- [Vite](https://vitejs.dev/) - Build tool and development server
+- [Recharts](https://recharts.org/) - Charting library for React
+- [Zustand](https://zustand-demo.pmnd.rs/) - Lightweight state management
+- [Playwright](https://playwright.dev/) - End-to-end testing framework
 
-## 📞 联系方式
+## 📞 Contact
 
-如有问题或建议，请通过以下方式联系：
+For questions or suggestions, please:
 
-- 提交 [Issue](https://github.com/[用户名]/GamblerRuin/issues)
-- 发送邮件至：[邮箱地址]
+- Submit an [Issue](https://github.com/tradermoney/GamblerRuin/issues)
+- Visit the [GitHub Repository](https://github.com/tradermoney/GamblerRuin)
 
 ---
 
-⭐ 如果这个项目对你有帮助，请给它一个星标！
+⭐ If this project helps you, please give it a star!

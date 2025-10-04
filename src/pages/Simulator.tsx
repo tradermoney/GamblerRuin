@@ -4,33 +4,14 @@ import VisualizationPanel from '../components/VisualizationPanel';
 import ControlPanel from '../components/ControlPanel';
 import DataExportPanel from '../components/DataExportPanel';
 import PersistenceTest from '../components/PersistenceTest';
+import PerformanceMetricsTimeline from '../components/PerformanceMetricsTimeline';
 import useSimulationStore from '../store/simulationStore';
 import './Simulator.css';
 
 function Simulator() {
-  const [showTestPanel, setShowTestPanel] = useState(false);
+  const [showTestPanel] = useState(false);
   const { restoreConfig } = useSimulationStore();
 
-  // 键盘快捷键
-  useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === 'Space') {
-        event.preventDefault();
-        // 这里可以添加开始/暂停逻辑
-      } else if (event.code === 'Escape') {
-        // 这里可以添加停止逻辑
-      } else if (event.code === 'KeyR') {
-        // 这里可以添加重置逻辑
-      } else if (event.code === 'KeyT' && event.ctrlKey) {
-        // Ctrl+T 切换测试面板
-        event.preventDefault();
-        setShowTestPanel(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, []);
 
   // 应用启动时恢复配置
   useEffect(() => {
@@ -58,12 +39,17 @@ function Simulator() {
             <VisualizationPanel />
           </div>
 
-          {/* 4. 数据导出 */}
+          {/* 4. 策略绩效分析 */}
+          <div className="panel-section">
+            <PerformanceMetricsTimeline />
+          </div>
+
+          {/* 5. 数据导出 */}
           <div className="panel-section">
             <DataExportPanel />
           </div>
 
-          {/* 5. 持久化测试面板 (开发模式) */}
+          {/* 6. 持久化测试面板 (开发模式) */}
           {showTestPanel && (
             <div className="panel-section">
               <PersistenceTest />
